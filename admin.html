@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#0b0f0e] flex justify-center items-center min-h-screen text-white">
+
+<div class="bg-black border border-green-600/30 rounded-xl p-8 w-full max-w-sm">
+
+<h2 class="text-green-500 text-2xl font-bold mb-6 text-center">
+Admin Login
+</h2>
+
+<input id="email" placeholder="Email"
+ class="w-full mb-4 p-3 bg-[#0b0f0e] border border-green-600/30 rounded">
+
+<input id="password" type="password" placeholder="Password"
+ class="w-full mb-6 p-3 bg-[#0b0f0e] border border-green-600/30 rounded">
+
+<button id="login"
+ class="w-full bg-green-600 hover:bg-green-500 text-black py-3 rounded font-bold">
+ Login
+</button>
+
+</div>
+
+<script type="module">
+import { auth } from "./firebase.js";
+import { signInWithEmailAndPassword }
+from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+login.onclick = async () => {
+  await signInWithEmailAndPassword(auth, email.value, password.value);
+  location.href = "dashboard.html";
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Slot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#0b0f0e] text-white flex justify-center items-center min-h-screen p-4">
+
+<form id="bookingForm"
+ class="bg-black border border-green-600/30 rounded-xl p-6 w-full max-w-md shadow-lg">
+
+<h2 class="text-2xl text-green-500 mb-6 text-center font-bold">
+  Book Gaming Slot
+</h2>
+
+<input id="name" placeholder="Your Name" required
+ class="w-full mb-3 p-3 bg-[#0b0f0e] border border-green-600/30 rounded">
+
+<input id="phone" placeholder="Phone Number" required
+ class="w-full mb-3 p-3 bg-[#0b0f0e] border border-green-600/30 rounded">
+
+<select id="zone" required
+ class="w-full mb-3 p-3 bg-[#0b0f0e] border border-green-600/30 rounded">
+  <option value="">Select Zone</option>
+  <option value="PC">PC</option>
+  <option value="PS5">PS5</option>
+</select>
+
+<select id="slot" required
+ class="w-full mb-3 p-3 bg-[#0b0f0e] border border-green-600/30 rounded">
+  <option value="">Select Slot</option>
+</select>
+
+<input id="time" type="time" required
+ class="w-full mb-3 p-3 bg-[#0b0f0e] border border-green-600/30 rounded">
+
+<input id="players" type="number" min="1" value="1"
+ class="w-full mb-3 p-3 bg-[#0b0f0e] border border-green-600/30 rounded"
+ placeholder="Number of Players">
+
+<input id="hours" type="number" min="1" value="1"
+ class="w-full mb-3 p-3 bg-[#0b0f0e] border border-green-600/30 rounded"
+ placeholder="Number of Hours">
+
+<!-- TOTAL DISPLAY -->
+<div class="mb-4 text-center text-lg">
+  Total: ₹ <span id="total">80</span>
+</div>
+
+<button
+ class="w-full bg-green-600 hover:bg-green-500 text-black py-3 rounded font-bold transition">
+ Submit Request
+</button>
+
+</form>
+
+<script>
+zone.onchange = () => {
+  slot.innerHTML = '<option value="">Select Slot</option>';
+  let count = zone.value === "PC" ? 7 : 4;
+  for (let i = 1; i <= count; i++)
+    slot.innerHTML += `<option>${zone.value}-${i}</option>`;
+};
+
+// LIVE TOTAL CALCULATION
+function updateTotal() {
+  let h = parseInt(hours.value) || 1;
+  total.innerText = h * 80;
+}
+
+hours.addEventListener("input", updateTotal);
+updateTotal();
+</script>
+
+<script type="module" src="booking.js"></script>
+
+</body>
+</html>
